@@ -1,70 +1,78 @@
 import React, { useState } from "react";
+import DadosIniciais from "./DadosIniciais";
+import Curriculo from "./Curriculo";
+import Escolaridade from "./Escolaridade";
+import Experiencia from "./Experiencia";
 
 function App() {
-  const [name, setName] = useState("sasaaaa");
+  const [name, setName] = useState("");
   const [sobrenome, setSobrenome] = useState("");
   const [email, setEmail] = useState("");
   const [telefone, setTelefone] = useState("");
+  const [cep, setCep] = useState("");
+
+  // Escolaridade
+  const [selEscolaridade, setSelEscolaridade] = useState("");
+
+  // Experiencia
+  const [tituloExp, setTituloExp] = useState("");
+  const [sobreExp, setSobreExp] = useState("");
+  const [tempExp, setTempExp] = useState("");
 
   return (
     <div className="flex min-h-screen bg-slate-100">
-      <div className="flex justify-center items-center w-1/2 p-8 border-r border-slate-300">
-        <div className="w-[500px] min-h-[800px] bg-white rounded-2xl shadow-xl p-8">
-          <h1 className="text-3xl font-bold text-slate-800 mb-8">
-            Configurações
-          </h1>
+      {/* Área de configurações */}
+      <div className="flex w-1/2 flex-col items-center  p-8">
+        <h1 className="mb-8 text-3xl font-bold text-slate-800">
+          Configurações
+        </h1>
 
-          <div className="flex flex-col gap-4 bg-slate-50 border border-slate-200 rounded-xl p-6">
-            <h2 className="text-xl font-semibold text-slate-700">
-              Dados iniciais
-            </h2>
-
-            <input
-              type="text"
-              placeholder="Nome"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className="w-full p-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+        <div className="w-full max-w-xl space-y-6 bg-white p-8 shadow-xl rounded-md">
+          <DadosIniciais
+            name={name}
+            setName={setName}
+            sobrenome={sobrenome}
+            setSobrenome={setSobrenome}
+            email={email}
+            setEmail={setEmail}
+            telefone={telefone}
+            setTelefone={setTelefone}
+            cep={cep}
+            setCep={setCep}
+          />
+          <div>
+            <Experiencia
+              tituloExp={tituloExp}
+              setTituloExp={setTituloExp}
+              sobreExp={sobreExp}
+              setSobreExp={setSobreExp}
+              tempExp={tempExp}
+              setTempExp={setTempExp}
             />
+          </div>
 
-            <input
-              type="text"
-              placeholder="Sobrenome"
-              value={sobrenome}
-              onChange={(e) => setSobrenome(e.target.value)}
-              className="w-full p-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-
-            <input
-              type="email"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full p-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-
-            <input
-              type="text"
-              placeholder="Telefone"
-              value={telefone}
-              onChange={(e) => setTelefone(e.target.value)}
-              className="w-full p-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          <div>
+            <Escolaridade
+              selEscolaridade={selEscolaridade}
+              setSelEscolaridade={setSelEscolaridade}
             />
           </div>
         </div>
       </div>
 
-      <div className="flex justify-center items-center w-1/2 p-8">
-        <div className="w-[650px] min-h-[800px] bg-white rounded-2xl shadow-xl p-10">
-          <h1 className="text-4xl font-bold text-slate-800">
-            {name} {sobrenome}
-          </h1>
-
-          <div className="mt-6 space-x-2 text-slate-600">
-            <p>{`Email: ${email}`}</p>
-            <p>{`Telefone ${telefone}`} </p>
-          </div>
-        </div>
+      {/* Área do currículo */}
+      <div className="flex w-1/2 items-start justify-center p-8">
+        <Curriculo
+          name={name}
+          sobrenome={sobrenome}
+          email={email}
+          telefone={telefone}
+          cep={cep}
+          selEscolaridade={selEscolaridade}
+          tituloExp={tituloExp}
+          sobreExp={sobreExp}
+          tempExp={tempExp}
+        />
       </div>
     </div>
   );
